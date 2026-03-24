@@ -1,22 +1,11 @@
-const fs = require("fs");
-const path = require("path");
+const data = require("./db.json");
 
 exports.handler = async () => {
-  try {
-    const filePath = path.join(__dirname, "db.json");
-    const data = fs.readFileSync(filePath, "utf-8");
-
-    return {
-      statusCode: 200,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: data
-    };
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message })
-    };
-  }
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  };
 };
