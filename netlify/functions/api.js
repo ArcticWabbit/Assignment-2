@@ -3,7 +3,7 @@ const path = require("path");
 
 exports.handler = async () => {
   try {
-    const filePath = path.join(process.cwd(), "public", "db.json");
+    const filePath = path.join(__dirname, "db.json");
     const data = fs.readFileSync(filePath, "utf-8");
 
     return {
