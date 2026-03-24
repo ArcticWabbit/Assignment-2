@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FocusForge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    img { width: 100%; }
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    /* nav */
+    header {
+      background-color: #e91e8c;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 30px;
+    }
+
+    .brand {
+      color: white;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      color: white;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 3px;
+      background: white;
+    }
+
+    .mobile-menu {
+      display: none;
+      background: #e91e8c;
+      padding: 10px 30px 16px;
+    }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mobile-menu a { color: white; }
+
+    /* landing */
+    .landing {
+      display: grid;
+      grid-template-columns: 1fr;
+      background-color: #e91e8c;
+      padding: 60px 30px;
+      text-align: center;
+    }
+
+    .landing-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .landing-content h1 { color: white; font-size: 2rem; }
+    .landing-content p { color: white; }
+    .landing-content a {
+      background: white;
+      color: #e91e8c;
+      padding: 10px 24px;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    /* features */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 50px 30px;
+      background: #f5f5f5;
+    }
+
+    .features h2 {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    .feat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .feat-card {
+      display: flex;
+      gap: 12px;
+      background: white;
+      border: 1px solid #ddd;
+      padding: 16px;
+    }
+
+    .feat-card h3 { margin-bottom: 4px; }
+    .feat-card p { color: #666; font-size: 0.9rem; }
+
+    .feat-img img { height: 340px; object-fit: cover; }
+
+    /* how it works */
+    .how-section {
+      padding: 50px 30px;
+    }
+
+    .how-section h2 { text-align: center; margin-bottom: 24px; }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #f5f5f5;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .step .num { font-size: 1.8rem; font-weight: bold; color: #e91e8c; }
+    .step p { font-size: 0.9rem; color: #666; }
+
+    /* about */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+      padding: 50px 30px;
+      background: #f5f5f5;
+    }
+
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .about-text p { color: #555; }
+
+    .about-text a {
+      background: #e91e8c;
+      color: white;
+      padding: 9px 20px;
+      width: fit-content;
+      border-radius: 4px;
+    }
+
+    .about-img img { height: 300px; object-fit: cover; }
+
+    /* team */
+    .team {
+      padding: 50px 30px;
+      text-align: center;
+    }
+
+    .team h2 { margin-bottom: 6px; }
+    .team > p { color: #666; margin-bottom: 24px; }
+
+    #memberCards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .member-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #ddd;
+      padding: 16px;
+    }
+
+
+    .member-email { font-size: 0.8rem; color: #888; }
+    .badge { font-size: 0.75rem; padding: 2px 8px; border: 1px solid #ccc; }
+
+    /* contact */
+    .contact {
+      padding: 50px 30px;
+      background: #f5f5f5;
+    }
+
+    .contact h2 { text-align: center; margin-bottom: 6px; }
+    .contact > p { text-align: center; color: #666; margin-bottom: 20px; }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .contact-form .full { grid-column: 1 / -1; }
+
+    .contact-form label { display: block; margin-bottom: 4px; font-size: 0.9rem; }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+    }
+
+    .contact-form textarea { min-height: 90px; }
+
+    .contact-form button {
+      background: #e91e8c;
+      color: white;
+      padding: 10px 28px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #sent-msg {
+      display: none;
+      text-align: center;
+      color: green;
+      margin-top: 12px;
+    }
+
+    /* footer */
+    footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      background: #333;
+      color: white;
+      padding: 20px 30px;
+    }
+
+    footer small { color: #aaa; }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .footer-links a { color: #aaa; font-size: 0.85rem; }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .features { grid-template-columns: 1fr; }
+      .feat-img { display: none; }
+      .how-grid { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .about-img { display: none; }
+      #memberCards { grid-template-columns: repeat(2, 1fr); }
+      .contact-form { grid-template-columns: 1fr; }
+      .contact-form .full { grid-column: 1; }
+      footer { grid-template-columns: 1fr; gap: 8px; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <header>
+    <nav>
+      <a href="#" class="brand">FocusForge</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn">Get Started</a></li>
+      </ul>
+      <button class="hamburger" id="burgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#features" onclick="closeMenu()">Features</a></li>
+        <li><a href="#how" onclick="closeMenu()">How It Works</a></li>
+        <li><a href="#about" onclick="closeMenu()">About</a></li>
+        <li><a href="#team" onclick="closeMenu()">Team</a></li>
+        <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="landing">
+      <div class="landing-content">
+        <h1>Build Better Habits,<br>One Day at a Time.</h1>
+        <p>Welcome to FocusForge — a simple, powerful productivity companion designed to help you stay organized, focused, and motivated. Whether you’re managing school, work, or personal projects, FocusForge gives you the tools to turn goals into progress.</p>
+        <a href="#features">Learn more</a>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <h2>What We Offer</h2>
+      <div class="feat-list">
+        <div class="feat-card">
+          <span>✅</span>
+          <div>
+            <h3>Smart Task Management</h3>
+            <p>Create tasks, set priorities, and organize everything in one place. FocusForge helps you break big goals into manageable steps.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <span>📊</span>
+          <div>
+            <h3>Progress Tracking</h3>
+            <p>Visualize your productivity with clean, easy-to-read progress indicators so you always know how far you’ve come.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <span>⏱️</span>
+          <div>
+            <h3>Focus Sessions</h3>
+            <p>Use built-in focus timers to work in distraction-free sessions and build consistent study or work habits.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <span>☁︎</span>
+          <div>
+            <h3>Cloud Sync</h3>
+            <p>Access your tasks from anywhere. Your data stays synced across devices so your workflow never skips a beat.</p>
+          </div>
+        </div>
+      </div>
+      <div class="feat-img">
+        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=700&q=80" alt="productivity" />
+      </div>
+    </section>
+
+    <section class="how-section" id="how">
+      <h2>How It Works</h2>
+      <div class="how-grid">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Create your workspace</h3>
+          <p>Set up your tasks and goals in seconds.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Plan your day</h3>
+          <p>Organize priorities and schedule focus sessions.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Stay consistent</h3>
+          <p>Track progress and build momentum over time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-text">
+        <h2>About Us</h2>
+        <p>FocusForge was created with students, creators, and professionals in mind. Our mission is to make productivity simple and accessible by combining clean design with practical features.</p>
+        <p>We believe that small, consistent actions lead to big results — and FocusForge exists to support you every step of the way.</p>
+        <a href="#contact">Contact Us</a>
+      </div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=700&q=80" alt="working" />
+      </div>
+    </section>
+
+    <section class="team" id="team">
+      <h2>Our Team</h2>
+      <p>The people who built FocusForge.</p>
+      <div id="memberCards">
+        <p>Loading team members...</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <p>Have a question or want to learn more? Send us a message!</p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div>
+          <label>Name</label>
+          <input type="text" placeholder="Your name" required />
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required />
+        </div>
+        <div class="full">
+          <label>Message</label>
+          <textarea placeholder="Write your message here..." required></textarea>
+        </div>
+        <div class="full" style="text-align: center;">
+          <button type="submit">Send Message</button>
+        </div>
+      </form>
+      <div id="sent-msg">Thanks! We'll get back to you soon.</div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>
+      <strong>FocusForge</strong><br>
+      <small>© 2025 FocusForge. All rights reserved.</small>
+    </div>
+    <div class="footer-links">
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // hamburger menu
+  const burger = document.getElementById('burgerBtn');
+  const menu = document.getElementById('mobileMenu');
+
+  burger.addEventListener('click', function() {
+    menu.classList.toggle('open');
+  });
+
+  function closeMenu() {
+    menu.classList.remove('open');
+  }
+
+  // contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.querySelector('.contact-form').style.display = 'none';
+    document.getElementById('sent-msg').style.display = 'block';
+  }
+
+  // fetch team members from db.json
+  fetch('/api')
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(data) {
+      const container = document.getElementById('memberCards');
+      container.innerHTML = '';
+      data.users.forEach(function(user) {
+        const nameParts = user.name.split(' ');
+        const statusClass = user.active ? 'active' : 'away';
+        const statusText = user.active ? 'Active' : 'Away';
+        container.innerHTML += '<div class="member-card">' +
+          '<div class="member-name">' + user.name + '</div>' +
+          '<div class="member-email">' + user.email + '</div>' +
+          '<span class="badge ' + statusClass + '">' + statusText + '</span>' +
+          '</div>';
+      });
+    });
+</script>
+
+</body>
+</html>

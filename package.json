@@ -1,0 +1,7 @@
+{
+  "name": "focusforge-server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "netlify dev"
+  }
+}

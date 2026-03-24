@@ -1,0 +1,55 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "email": "jdoe@yahoo.com",
+            "active": true
+        },
+        {
+            "id": 2,
+            "name": "Jane Hopper",
+            "email": "eleven@gmail.com",
+            "active": true
+        },
+        {
+            "id": 3,
+            "name": "Alice Johnson",
+            "email": "ajohn@hotmail.com",
+            "active": true
+        },
+        {
+            "id": 4,
+            "name": "Bob Brown",
+            "email": "bob@aol.com",
+            "active": false
+        },
+        {
+            "id": 5,
+            "name": "Miles Davis",
+            "email": "mdavis@gmail.com",
+            "active": false
+        },
+        {
+            "id": 6,
+            "name": "Lori Melton",
+            "email": "lori@aol.com",
+            "active": true
+        },
+        {
+            "id": 7,
+            "name": "Patrick Bates",
+            "email": "bates@hotmail.com",
+            "active": false
+        },
+        {
+            "id": 8,
+            "name": "John Walker",
+            "email": "jwalker@yahoo.com",
+            "active": true
+        }
+    ]
+
+}
+
+
